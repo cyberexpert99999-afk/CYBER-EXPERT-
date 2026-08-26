@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Expert</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Orbitron (bold futuristic), Rajdhani (bold tech), Share Tech Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0e17;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Rajdhani', 'Share Tech Mono', 'Segoe UI', sans-serif;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* Matrix-like rain effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, 
+                rgba(0, 255, 200, 0.015) 0px, 
+                rgba(0, 255, 200, 0.015) 2px, 
+                transparent 2px, 
+                transparent 6px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .cyber-card {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(8, 16, 28, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 255, 200, 0.2);
+            box-shadow: 
+                0 0 40px rgba(0, 255, 200, 0.05),
+                0 0 80px rgba(0, 255, 200, 0.02),
+                inset 0 0 80px rgba(0, 255, 200, 0.02);
+            border-radius: 1.5rem 0.5rem 1.5rem 0.5rem;
+            padding: 2.5rem 2.2rem;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        /* Scanline overlay */
+        .cyber-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, 
+                transparent 0px, 
+                transparent 3px, 
+                rgba(0, 255, 200, 0.03) 3px, 
+                rgba(0, 255, 200, 0.03) 4px);
+            pointer-events: none;
+            z-index: 0;
+            animation: scanlines 8s linear infinite;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .cyber-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Glowing border corners */
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 60px;
+            height: 60px;
+            border-top: 3px solid #00ffc8;
+            border-left: 3px solid #00ffc8;
+            opacity: 0.6;
+            z-index: 3;
+            filter: drop-shadow(0 0 12px #00ffc8);
+        }
+
+        .corner-br {
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 60px;
+            height: 60px;
+            border-bottom: 3px solid #00ffc8;
+            border-right: 3px solid #00ffc8;
+            opacity: 0.6;
+            z-index: 3;
+            filter: drop-shadow(0 0 12px #00ffc8);
+        }
+
+        /* ===== BRAND ===== */
+        .brand-headline {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.2rem;
+            border-bottom: 1px solid rgba(0, 255, 200, 0.15);
+            padding-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .brand-headline i {
+            font-size: 2.8rem;
+            color: #00ffc8;
+            text-shadow: 0 0 30px #00ffc880, 0 0 60px #00ffc840;
+            animation: glitchIcon 3s infinite;
+        }
+
+        @keyframes glitchIcon {
+            0%, 90%, 100% { opacity: 1; transform: scale(1); }
+            92% { opacity: 0.6; transform: scale(0.95) skewX(-2deg); }
+            94% { opacity: 1; transform: scale(1.05) skewX(2deg); }
+            96% { opacity: 0.8; transform: scale(0.98); }
+        }
+
+        .brand-name {
+            font-family: 'Orbitron', 'Share Tech Mono', monospace;
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #b0ffe0, #00ffc8, #00b4ff, #00ffc8);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 4s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(0, 255, 200, 0.2);
+            text-transform: uppercase;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .brand-tag {
+            font-family: 'Rajdhani', 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #7ab8d4;
+            margin-left: auto;
+            background: rgba(0, 255, 200, 0.06);
+            padding: 0.3rem 1.5rem;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 255, 200, 0.15);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .brand-tag i {
+            font-size: 0.8rem;
+            margin-right: 6px;
+            color: #00ffc8;
+            animation: none;
+        }
+
+        /* ===== ANIMATION ===== */
+        .animation-stage {
+            background: rgba(0, 20, 30, 0.4);
+            border-radius: 1rem 0.3rem 1rem 0.3rem;
+            padding: 2rem 1.5rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(0, 255, 200, 0.08);
+            box-shadow: 0 0 40px rgba(0, 255, 200, 0.02), inset 0 0 40px rgba(0, 255, 200, 0.02);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 130px;
+            backdrop-filter: blur(4px);
+            position: relative;
+        }
+
+        .animation-stage::before {
+            content: '>';
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            font-size: 0.8rem;
+            color: #00ffc840;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .cyber-animation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            animation: cyberPulse 6s ease-in-out infinite;
+            width: 100%;
+        }
+
+        @keyframes cyberPulse {
+            0% { opacity: 0.5; transform: scale(0.94) rotate(-0.5deg); filter: blur(0.5px); }
+            15% { opacity: 1; transform: scale(1.02) rotate(0deg); filter: blur(0); }
+            40% { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
+            60% { opacity: 1; transform: scale(1.03) rotate(0.3deg); filter: blur(0); }
+            80% { opacity: 0.95; transform: scale(0.99) rotate(-0.2deg); filter: blur(0); }
+            100% { opacity: 0.5; transform: scale(0.94) rotate(-0.5deg); filter: blur(0.5px); }
+        }
+
+        .anim-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #b0f0e0;
+            font-weight: 700;
+            text-shadow: 0 0 20px #00ffc850;
+            padding: 0.2rem 0.8rem;
+            font-family: 'Orbitron', 'Share Tech Mono', monospace;
+        }
+
+        .anim-item i {
+            font-size: 2.8rem;
+            color: #00ffc8;
+            margin-bottom: 0.2rem;
+            filter: drop-shadow(0 0 12px #00ffc866);
+        }
+
+        .anim-item span {
+            font-family: 'Rajdhani', 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: rgba(0, 255, 200, 0.04);
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 255, 200, 0.08);
+        }
+
+        .anim-divider {
+            font-size: 2rem;
+            color: #00ffc860;
+            animation: blinkDivider 1.2s infinite alternate;
+            font-weight: 100;
+        }
+
+        @keyframes blinkDivider {
+            0% { opacity: 0.15; transform: scale(0.8); }
+            100% { opacity: 0.9; transform: scale(1.2); }
+        }
+
+        /* ===== INFO BOX ===== */
+        .info-box {
+            background: rgba(0, 12, 22, 0.7);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 1rem 0.3rem 1rem 0.3rem;
+            padding: 2rem 2rem;
+            border-left: 4px solid #00ffc8;
+            border-right: 1px solid rgba(0, 255, 200, 0.08);
+            border-top: 1px solid rgba(0, 255, 200, 0.05);
+            border-bottom: 1px solid rgba(0, 255, 200, 0.05);
+            box-shadow: 0 0 60px rgba(0, 255, 200, 0.02);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .info-box:hover {
+            border-left-width: 6px;
+            border-left-color: #00e6b0;
+            box-shadow: 0 0 50px rgba(0, 255, 200, 0.04);
+        }
+
+        .info-box h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-family: 'Orbitron', 'Share Tech Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #d0f5ec;
+            margin-bottom: 1.4rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(0, 255, 200, 0.08);
+            padding-bottom: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .info-box h2 i {
+            color: #00ffc8;
+            font-size: 1.8rem;
+            text-shadow: 0 0 20px #00ffc860;
+        }
+
+        .info-content {
+            color: #c8e6e0;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            font-family: 'Rajdhani', 'Share Tech Mono', sans-serif;
+            font-weight: 500;
+        }
+
+        .info-content p {
+            background: rgba(0, 255, 200, 0.02);
+            padding: 0.5rem 1rem;
+            border-radius: 12px 2px 12px 2px;
+            border-left: 2px solid rgba(0, 255, 200, 0.08);
+            font-weight: 500;
+        }
+
+        .info-content strong {
+            color: #9effe0;
+            font-weight: 700;
+            font-family: 'Orbitron', 'Share Tech Mono', monospace;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight-badge {
+            display: inline-block;
+            font-family: 'Rajdhani', 'Share Tech Mono', monospace;
+            background: rgba(0, 255, 200, 0.06);
+            padding: 0.1rem 0.9rem;
+            border-radius: 40px;
+            color: #b0ffe0;
+            border: 1px solid #00ffc830;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 0.3rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Instagram Links */
+        .insta-link-wrapper {
+            margin-top: 1.4rem;
+            padding-top: 1.2rem;
+            border-top: 1px dashed rgba(0, 255, 200, 0.12);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            align-items: center;
+        }
+
+        .insta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #feda75, #d62976, #962fbf, #4f5bd5);
+            background-size: 200% 200%;
+            padding: 0.6rem 1.8rem;
+            border-radius: 60px;
+            font-family: 'Orbitron', 'Share Tech Mono', monospace;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 0 30px rgba(214, 41, 118, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .insta-link i {
+            font-size: 1.6rem;
+            color: white;
+            filter: drop-shadow(0 0 6px rgba(0,0,0,0.2));
+        }
+
+        .insta-link:hover {
+            transform: scale(1.04) translateY(-2px);
+            box-shadow: 0 10px 40px rgba(214, 41, 118, 0.3);
+            background-position: right center;
+        }
+
+        .insta-link.fav {
+            background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe);
+            background-size: 200% 200%;
+            box-shadow: 0 0 30px rgba(245, 87, 108, 0.15);
+        }
+
+        .insta-link.fav:hover {
+            box-shadow: 0 10px 40px rgba(245, 87, 108, 0.3);
+        }
+
+        .insta-label {
+            font-family: 'Rajdhani', 'Share Tech Mono', monospace;
+            color: #7ab8d4;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(0, 255, 200, 0.03);
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 255, 200, 0.06);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .insta-label i {
+            color: #00ffc8;
+            margin-right: 6px;
+        }
+
+        .insta-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.6rem 1.2rem;
+        }
+
+        .insta-group-label {
+            font-family: 'Rajdhani', 'Share Tech Mono', monospace;
+            color: #6a9aa0;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .info-footer {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            border-top: 1px dashed rgba(0, 255, 200, 0.08);
+            padding-top: 1.2rem;
+            font-family: 'Rajdhani', 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6a9aa0;
+            letter-spacing: 1px;
+        }
+
+        .info-footer i {
+            color: #00ffc8;
+            margin-right: 0.4rem;
+            font-size: 0.7rem;
+        }
+
+        /* Terminal footer */
+        .terminal-footer {
+            margin-top: 1.8rem;
+            text-align: right;
+            font-size: 0.7rem;
+            color: #00ffc830;
+            letter-spacing: 3px;
+            border-top: 1px solid rgba(0,255,200,0.04);
+            padding-top: 0.8rem;
+            font-family: 'Share Tech Mono', 'Rajdhani', monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .terminal-footer .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 16px;
+            background: #00ffc8;
+            margin-left: 6px;
+            animation: blinkCursor 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .terminal-footer .prompt {
+            color: #00ffc860;
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .cyber-card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 1rem 0.3rem 1rem 0.3rem;
+            }
+            .brand-name {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            .brand-headline i {
+                font-size: 2.2rem;
+            }
+            .brand-tag {
+                margin-left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 0.75rem;
+            }
+            .animation-stage {
+                padding: 1.2rem 0.8rem;
+                min-height: 90px;
+            }
+            .anim-item i {
+                font-size: 2rem;
+            }
+            .anim-divider {
+                font-size: 1.4rem;
+            }
+            .info-box {
+                padding: 1.5rem;
+            }
+            .info-box h2 {
+                font-size: 1.2rem;
+            }
+            .info-content {
+                font-size: 0.95rem;
+            }
+            .insta-link {
+                font-size: 0.85rem;
+                padding: 0.5rem 1.2rem;
+            }
+            .insta-link i {
+                font-size: 1.3rem;
+            }
+            .insta-group {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+            .terminal-footer {
+                font-size: 0.6rem;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand-name {
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+            }
+            .cyber-animation {
+                gap: 0.4rem;
+            }
+            .anim-item span {
+                font-size: 0.55rem;
+                padding: 0.1rem 0.4rem;
+                letter-spacing: 1px;
+            }
+            .anim-divider {
+                display: none;
+            }
+            .insta-link-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .insta-link {
+                justify-content: center;
+                font-size: 0.8rem;
+            }
+            .info-box h2 {
+                font-size: 1rem;
+                flex-wrap: wrap;
+            }
+            .insta-group {
+                align-items: stretch;
+            }
+            .info-content strong {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-card">
+        <!-- Corner accent -->
+        <div class="corner-br"></div>
+
+        <!-- Brand -->
+        <div class="brand-headline">
+            <i class="fas fa-shield-halved"></i>
+            <span class="brand-name">Cyber Security Expert</span>
+            <span class="brand-tag"><i class="fas fa-lock"></i> ethical edge</span>
+        </div>
+
+        <!-- Animation 5-6 sec -->
+        <div class="animation-stage">
+            <div class="cyber-animation">
+                <div class="anim-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>pentest</span>
+                </div>
+                <span class="anim-divider">✦</span>
+                <div class="anim-item">
+                    <i class="fas fa-user-secret"></i>
+                    <span>privacy</span>
+                </div>
+                <span class="anim-divider">✦</span>
+                <div class="anim-item">
+                    <i class="fas fa-code"></i>
+                    <span>exploit</span>
+                </div>
+                <span class="anim-divider">✦</span>
+                <div class="anim-item">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>zero‑trust</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info box -->
+        <div class="info-box">
+            <h2>
+                <i class="fas fa-skull"></i> 
+                Ethical Hacking · Offensive Security
+            </h2>
+            <div class="info-content">
+                <p>
+                    <span class="highlight-badge"><i class="fas fa-crosshairs"></i> white hat</span>
+                    <strong>Ethical hacking</strong> is the authorized practice of bypassing system security 
+                    to identify potential vulnerabilities. Unlike malicious hackers, ethical hackers 
+                    operate with permission and aim to strengthen defenses.
+                </p>
+                <p>
+                    <i class="fas fa-arrow-right" style="color: #00ffc8; margin-right: 8px;"></i>
+                    <strong>Methodologies:</strong> reconnaissance, scanning, exploitation, post‑exploitation, 
+                    and reporting. Tools like Nmap, Metasploit, Burp Suite, and Wireshark are commonly used 
+                    in simulated attacks.
+                </p>
+                <p>
+                    <i class="fas fa-arrow-right" style="color: #00ffc8; margin-right: 8px;"></i>
+                    <strong>Why it matters:</strong> proactive security reduces risk, protects sensitive data, 
+                    and builds customer trust. Ethical hackers are the <strong>guardians</strong> of the 
+                    digital frontier.
+                </p>
+            </div>
+
+            <!-- Instagram Links -->
+            <div class="insta-link-wrapper">
+                <div class="insta-group">
+                    <span class="insta-group-label"><i class="fas fa-user"></i> connect</span>
+                    <a href="https://www.instagram.com/cybermind_x" target="_blank" rel="noopener noreferrer" class="insta-link">
+                        <i class="fab fa-instagram"></i> @cybermind_x
+                    </a>
+                    <span class="insta-label"><i class="fas fa-arrow-right"></i> cyber updates</span>
+                </div>
+                <div class="insta-group">
+                    <span class="insta-group-label"><i class="fas fa-heart" style="color: #f5576c;"></i> fav</span>
+                    <a href="https://www.instagram.com/farhin_4u" target="_blank" rel="noopener noreferrer" class="insta-link fav">
+                        <i class="fab fa-instagram"></i> favourite person 💝
+                    </a>
+                    <span class="insta-label"><i class="fas fa-star"></i> favorite</span>
+                </div>
+            </div>
+
+            <div class="info-footer">
+                <span><i class="fas fa-certificate"></i> CEH · OSCP · GPEN</span>
+                <span><i class="fas fa-bug"></i> responsible disclosure</span>
+                <span><i class="fas fa-shield"></i> defense in depth</span>
+            </div>
+        </div>
+
+        <!-- Terminal-style footer -->
+        <div class="terminal-footer">
+            <span class="prompt"><i class="fas fa-terminal"></i> root@cyberexpert:~$</span>
+            <span>stay_secure() <span class="cursor"></span></span>
+        </div>
+    </div>
+</body>
+</html>
